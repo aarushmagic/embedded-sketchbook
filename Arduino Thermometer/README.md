@@ -1,10 +1,10 @@
 # Arduino Thermometer
 
-## Project Status: Initial Design
-I am designing a custom thermometer using a TMP37 sensor and 7-segment displays.
+## Project Status: Breadboard Prototype
+I have moved the design from Tinkercad to a physical Arduino Uno on a breadboard.
 
 ### Current Progress
-* Designed the circuit logic in Tinkercad.
-* Wrote initial C code to interpret sensor data and drive the multiplexed display.
+* Assembled the circuit on a breadboard.
+* **Fixed:** The display was flickering because the update loop was too fast. I added a 5-second timer to the code to stabilize the readout.
 
-![Tinkercad Circuit](./assets/tinkercad_design.png)
+![Breadboard Prototype](./assets/breadboard_uno.jpg)
