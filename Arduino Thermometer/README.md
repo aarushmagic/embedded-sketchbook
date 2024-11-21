@@ -1,10 +1,12 @@
 # Arduino Thermometer
 
-## Project Status: Breadboard Prototype
-I have moved the design from Tinkercad to a physical Arduino Uno on a breadboard.
+## Project Status: Standalone Migration
+I have migrated the project off the Arduino Uno and onto a standalone ATmega328P chip.
 
 ### Current Progress
-* Assembled the circuit on a breadboard.
-* **Fixed:** The display was flickering because the update loop was too fast. I added a 5-second timer to the code to stabilize the readout.
+* Ported the circuit to a standalone ATmega328P-PU.
+* Added a 16MHz external crystal oscillator and 22pF capacitors for timing.
+* Added a 10kΩ pull-up resistor for the Reset pin.
+* Verified the code still works with the new hardware setup.
 
-![Breadboard Prototype](./assets/breadboard_uno.jpg)
+![Standalone Breadboard](./assets/standalone_breadboard.jpg)
