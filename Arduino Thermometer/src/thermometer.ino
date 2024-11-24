@@ -36,9 +36,15 @@ void loop() {
   unsigned long currentMillis = millis();
 
   if (currentMillis - lastUpdateTime >= updateInterval) {
-    int reading = analogRead(sensorPin);
     
-    float voltage = reading * (5.0 / 1024.0);
+    long totalReading = 0;
+    for (int i = 0; i < 100; i++) {
+      totalReading += analogRead(sensorPin);
+      delay(1);
+    }
+    float avgReading = totalReading / 100.0;
+    
+    float voltage = avgReading * (5.0 / 1024.0);
     float tempC = (voltage - 0.5) * 100.0;
     float tempF = (tempC * 9.0 / 5.0) + 32.0;
     
