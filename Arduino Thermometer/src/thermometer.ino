@@ -55,7 +55,7 @@ void loop() {
 
       float voltage = avgReading * (1.1 / 1024.0);
       float tempC = voltage * 50.0;
-      float tempF = (tempC * 9.0 / 5.0) + 32.0;
+      float tempF = (tempC * 9.0 / 5.0) + 32.0 + 2.5; //2.5 is the Calibration offset
       
       int tempInt = (int)(tempF + 0.5);
 
