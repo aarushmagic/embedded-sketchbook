@@ -4,8 +4,14 @@ const int digit1Pin = 9;
 const int digit2Pin = 10;
 const int displayDelay = 5;
 
-unsigned long lastUpdateTime = 0;
+const long sampleInterval = 50;
 const long updateInterval = 5000;
+
+unsigned long lastSampleTime = 0;
+unsigned long lastUpdateTime = 0;
+
+long totalReading = 0;
+int sampleCount = 0;
 
 int tensDigit = 0;
 int onesDigit = 0;
@@ -24,6 +30,8 @@ byte numPatterns[10][7] = {
 };
 
 void setup() {
+  analogReference(INTERNAL);
+
   for (int i = 0; i < 7; i++) {
     pinMode(segmentPins[i], OUTPUT);
   }
@@ -33,33 +41,39 @@ void setup() {
 }
 
 void loop() {
-  unsigned long currentMillis = millis();
+  unsigned long currentTime = millis();
 
-  if (currentMillis - lastUpdateTime >= updateInterval) {
-    
-    long totalReading = 0;
-    for (int i = 0; i < 100; i++) {
-      totalReading += analogRead(sensorPin);
-      delay(1);
+  if (currentTime - lastSampleTime >= sampleInterval) {
+    totalReading += analogRead(sensorPin);
+    sampleCount++;
+    lastSampleTime = currentTime;
+  }
+
+  if (currentTime - lastUpdateTime >= updateInterval) {
+    if (sampleCount > 0) {
+      float avgReading = (float)totalReading / sampleCount;
+
+      float voltage = avgReading * (1.1 / 1024.0);
+      float tempC = voltage * 50.0;
+      float tempF = (tempC * 9.0 / 5.0) + 32.0;
+      
+      int tempInt = (int)(tempF + 0.5);
+
+      if (tempInt < 0) tempInt = 0;
+      if (tempInt > 99) tempInt = 99;
+
+      tensDigit = tempInt / 10;
+      onesDigit = tempInt % 10;
+
+      Serial.print("Volts: ");
+      Serial.print(voltage);
+      Serial.print(", Temp: ");
+      Serial.println(tempF);
     }
-    float avgReading = totalReading / 100.0;
-    
-    float voltage = avgReading * (5.0 / 1024.0);
-    float tempC = (voltage - 0.5) * 100.0;
-    float tempF = (tempC * 9.0 / 5.0) + 32.0;
-    
-    int tempInt = (int)(tempF + 0.5);
-    
-    if (tempInt < 0) tempInt = 0;
-    if (tempInt > 99) tempInt = 99;
 
-    tensDigit = tempInt / 10;
-    onesDigit = tempInt % 10;
-    
-    Serial.print("Temp: ");
-    Serial.println(tempF);
-    
-    lastUpdateTime = currentMillis;
+    totalReading = 0;
+    sampleCount = 0;
+    lastUpdateTime = currentTime;
   }
 
   digitalWrite(digit2Pin, LOW);
