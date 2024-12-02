@@ -50,7 +50,7 @@ Soldered components onto a sawed-off perfboard. The layout was optimized to fit 
 ## Project Structure
 * `src/` - The final C code for the ATmega328P.
 * `models/` - .STEP files for the 3D printed case (Top & Bottom).
-* `Assets/` - Project photos and diagrams.
+* `assets/` - Project photos and diagrams.
 
 ## Bill of Materials
 | Component | Quantity | Note |
