@@ -1,38 +1,53 @@
 #include <Arduino.h>
 
 #define SPEAKER_PIN 25
-#define NOTE_A  440
-#define NOTE_F  349
-#define NOTE_C  523
-#define NOTE_E  659
 
 void setup() {
 
 }
 
-void beep(int note, int duration) {
-  long delayValue = 1000000 / note / 2;
-  long numCycles = note * duration / 1000;
+void playKick() {
+  float frequency = 150.0; 
+  float volume = 255.0;
 
-  for (long i = 0; i < numCycles; i++) {
-    dacWrite(SPEAKER_PIN, 255);
-    delayMicroseconds(delayValue);
-    dacWrite(SPEAKER_PIN, 0);
-    delayMicroseconds(delayValue);
+  while (frequency > 40.0) {
+    float period = 1000000.0 / frequency;
+
+    for (int t = 0; t < period; t += 20) {
+      float angle = (float)t / period * 2.0 * PI;
+      int value = (sin(angle) + 1.0) * (volume / 2.0);
+
+      dacWrite(SPEAKER_PIN, value);
+      delayMicroseconds(10);
+    }
+
+    frequency -= 3.0; 
+    volume -= 4.0; 
   }
-  delay(20);
+  dacWrite(SPEAKER_PIN, 0);
+}
+
+void playSnare() {
+  int volume = 200;
+
+  for (int i = 0; i < 800; i++) {
+    int randomValue = random(0, volume);
+    dacWrite(SPEAKER_PIN, randomValue);
+    delayMicroseconds(40);
+    if (i % 5 == 0 && volume > 0) volume--; 
+  }
+  dacWrite(SPEAKER_PIN, 0);
 }
 
 void loop() {
-  beep(NOTE_A, 500);
-  beep(NOTE_A, 500);
-  beep(NOTE_A, 500);
-  beep(NOTE_F, 350);
-  beep(NOTE_C, 150);
-  beep(NOTE_A, 500);
-  beep(NOTE_F, 350);
-  beep(NOTE_C, 150);
-  beep(NOTE_A, 650);
-
-  delay(3000);
+  playKick();
+  delay(200);
+  playSnare();
+  delay(200);
+  playKick();
+  delay(100);
+  playKick();
+  delay(100);
+  playSnare();
+  delay(400);
 }
