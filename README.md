@@ -30,7 +30,7 @@ My workflow focuses on understanding the hardware constraints to write better so
 | :--- | :--- | :--- | :--- |
 | [**Arduino Thermometer**](./Arduino%20Thermometer) | ATmega328P | **Signal Processing:** Implemented software averaging filters to handle noisy sensor data.<br>**Optimization:** Migrated to standalone chip with internal 1.1V reference for precision. | Completed |
 | [**ESP32 Oscilloscope**](https://github.com/aarushmagic/esp-scope) | ESP32 | **Systems Programming:** High-speed ADC sampling and real-time data visualization via WebSockets.<br>**Networking:** Asynchronous web server hosting. | Functional / Iterating |
-| [**Bluetooth Speaker**](./ESP32-Bluetooth-Speaker) | ESP32 | **Electromechanics:** Built a physical driver (magnets/coils) and Class A amp to understand the analog output stage.<br>**Protocols:** Implemented an A2DP Bluetooth sink for wireless streaming. | Completed |
+| [**Bluetooth Speaker**](./Bluetooth%20Speaker) | ESP32 | **Electromechanics:** Built a physical driver (magnets/coils) and Class A amp to understand the analog output stage.<br>**Protocols:** Implemented an A2DP Bluetooth sink for wireless streaming. | Completed |
 
 ## License
 
