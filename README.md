@@ -1,6 +1,6 @@
 # Embedded Systems Sketchbook
 
-This repository is my digital playground for embedded engineering. It’s where I document my experiments and prototypes using AVR and ESP32 microcontrollers.
+This repository is my digital playground for embedded engineering. It’s where I document my experiments and prototypes using **AVR** and **ESP32** microcontrollers.
 
 I do this mostly because I enjoy building things. There is something satisfying about writing code and seeing it control hardware in the real world. 
 
@@ -19,7 +19,7 @@ My workflow focuses on understanding the hardware constraints to write better so
     * **C / C++:** Focus on pointer arithmetic, memory management, and hardware abstraction.
     * **Protocols:** I2C, SPI, UART, A2DP (Bluetooth), HTTP/WebSockets.
 * **Hardware Platforms**
-    * **Microcontrollers:** Arduino Uno, ATmega328P (Standalone), ESP32
+    * **Microcontrollers:** Arduino Uno, ATmega328P (Standalone), ESP32.
 * **Tools**
     * **Development:** Arduino IDE, ESP-IDF.
     * **Modeling/Sim:** OnShape (3D), Tinkercad (Circuits).
@@ -28,9 +28,9 @@ My workflow focuses on understanding the hardware constraints to write better so
 
 | Project | Hardware | CS & Engineering Concepts | Status |
 | :--- | :--- | :--- | :--- |
-| [Arduino Thermometer](./Arduino%20Thermometer) | ATmega328P | **Signal Processing:** Implemented software averaging filters to handle noisy sensor data.<br>**Optimization:** Migrated to standalone chip with internal 1.1V reference for precision. | Completed |
-| [ESP32 Oscilloscope](https://github.com/aarushmagic/esp-scope) | ESP32 | **Systems Programming:** High-speed ADC sampling and real-time data visualization via WebSockets.<br>**Networking:** Asynchronous web server hosting. | Functional / Iterating |
-| Bluetooth Speaker | ESP32 | **Audio Streaming:** Implementing an A2DP Bluetooth sink.<br>**Physics:** Building the physical driver (voice coils/magnets) to understand the analog output stage. | Planned |
+| [**Arduino Thermometer**](./Arduino%20Thermometer) | ATmega328P | **Signal Processing:** Implemented software averaging filters to handle noisy sensor data.<br>**Optimization:** Migrated to standalone chip with internal 1.1V reference for precision. | Completed |
+| [**ESP32 Oscilloscope**](https://github.com/aarushmagic/esp-scope) | ESP32 | **Systems Programming:** High-speed ADC sampling and real-time data visualization via WebSockets.<br>**Networking:** Asynchronous web server hosting. | Functional / Iterating |
+| [**Bluetooth Speaker**](./ESP32-Bluetooth-Speaker) | ESP32 | **Electromechanics:** Built a physical driver (magnets/coils) and Class A amp to understand the analog output stage.<br>**Protocols:** Implemented an A2DP Bluetooth sink for wireless streaming. | Completed |
 
 ## License
 
