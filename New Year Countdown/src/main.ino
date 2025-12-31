@@ -74,19 +74,16 @@ void loop() {
         tft.drawNumber(days, 40, 125, 6); 
         prevDay = days;
     }
-
     if(hours != prevHour) {
         tft.fillRect(70, 100, 50, 50, TFT_BLACK);
         tft.drawNumber(hours, 95, 125, 6);
         prevHour = hours;
     }
-
     if(mins != prevMin) {
         tft.fillRect(125, 100, 50, 50, TFT_BLACK);
         tft.drawNumber(mins, 150, 125, 6);
         prevMin = mins;
     }
-
     if(secs != prevSec) {
         tft.setTextColor(TFT_RED, TFT_BLACK); 
         tft.fillRect(180, 100, 50, 50, TFT_BLACK);
